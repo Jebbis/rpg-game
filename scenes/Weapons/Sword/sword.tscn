@@ -1,0 +1,136 @@
+[gd_scene load_steps=14 format=3 uid="uid://btyhlm2hgwhbb"]
+
+[ext_resource type="Script" path="res://scenes/Weapons/Sword/sword.gd" id="1_0i6ga"]
+[ext_resource type="Texture2D" uid="uid://soohsfxaypcl" path="res://graphics/items/swords/espadaUlt.png" id="1_cg3hn"]
+[ext_resource type="PackedScene" uid="uid://c1oj2xxjv70vq" path="res://scenes/components/HitboxComponent/hitbox_component.tscn" id="2_4vfkf"]
+[ext_resource type="PackedScene" uid="uid://bvs3uug14tbff" path="res://scenes/Weapons/Sword/weapon_sparkles.tscn" id="3_jx5sj"]
+[ext_resource type="Texture2D" uid="uid://owxjx5yi3jit" path="res://graphics/items/swords/sprite-sheet.png" id="4_lo1sv"]
+
+[sub_resource type="Animation" id="Animation_jd2bs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x8h66"]
+resource_name = "swing"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1.62451, 1),
+"update": 0,
+"values": [0.0, -1.0472, 1.309, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2s3bs"]
+_data = {
+"RESET": SubResource("Animation_jd2bs"),
+"swing": SubResource("Animation_x8h66")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_liakc"]
+size = Vector2(34, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp1vq"]
+size = Vector2(10, 25)
+
+[sub_resource type="Animation" id="Animation_ymnek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jl8g8"]
+resource_name = "slash"
+length = 0.35
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fnhvr"]
+_data = {
+"RESET": SubResource("Animation_ymnek"),
+"slash": SubResource("Animation_jl8g8")
+}
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_0i6ga")
+movement_threshold = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(20, 0)
+rotation = -0.785398
+texture = ExtResource("1_cg3hn")
+flip_v = true
+
+[node name="WeaponSparkles" parent="Sprite2D" instance=ExtResource("3_jx5sj")]
+position = Vector2(9.19239, 9.19239)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2s3bs")
+}
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_4vfkf")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(20, -0.5)
+shape = SubResource("RectangleShape2D_liakc")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(32, -1.5)
+shape = SubResource("RectangleShape2D_tp1vq")
+disabled = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(27, 6)
+rotation = 2.70177
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_lo1sv")
+flip_v = true
+hframes = 2
+vframes = 4
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fnhvr")
+}

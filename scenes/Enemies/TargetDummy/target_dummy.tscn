@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://k03fugh65r3c"]
+
+[ext_resource type="Script" path="res://scenes/Enemies/TargetDummy/target_dummy.gd" id="1_4c34c"]
+[ext_resource type="PackedScene" uid="uid://bf16xse3xwtdo" path="res://scenes/components/HealthComponent/health_component.tscn" id="1_bb8xe"]
+[ext_resource type="Texture2D" uid="uid://dcxfbahhthjjb" path="res://graphics/enemies/Dummy(1).png" id="1_rhalc"]
+[ext_resource type="PackedScene" uid="uid://mn3780q1878k" path="res://scenes/components/HurtboxComponent/hurtbox_component.tscn" id="2_uei7o"]
+[ext_resource type="PackedScene" uid="uid://digl8hvtyv70u" path="res://scenes/components/DamageNumbersComponent/damage_numbers_component.tscn" id="4_g8se8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxank"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc48x"]
+radius = 4.0
+height = 16.0
+
+[node name="TargetDummy" type="CharacterBody2D"]
+script = ExtResource("1_4c34c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rhalc")
+hframes = 8
+vframes = 3
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_qxank")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_bb8xe")]
+z_index = 2
+position = Vector2(0, -12)
+max_health = 200
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "damageNumbers_component") instance=ExtResource("2_uei7o")]
+collision_layer = 0
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+damageNumbers_component = NodePath("../DamageNumbersComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_uc48x")
+
+[node name="DamageNumbersComponent" parent="." instance=ExtResource("4_g8se8")]

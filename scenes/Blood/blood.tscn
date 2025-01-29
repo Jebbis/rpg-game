@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://d6irh7hk7gem"]
+
+[ext_resource type="Script" path="res://scenes/Blood/blood.gd" id="1_5myl1"]
+
+[sub_resource type="Gradient" id="Gradient_gum5u"]
+colors = PackedColorArray(0.980392, 0.0392157, 0.282353, 1, 0.980392, 0.0392157, 0.282353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8drbw"]
+gradient = SubResource("Gradient_gum5u")
+
+[sub_resource type="Curve" id="Curve_s8071"]
+max_value = 0.25
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.498069, 0.655698), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Blood" type="CPUParticles2D"]
+z_index = -1
+z_as_relative = false
+position = Vector2(-1, 0)
+amount = 30
+lifetime = 0.5
+explosiveness = 1.0
+texture = SubResource("GradientTexture2D_8drbw")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.02
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_s8071")
+script = ExtResource("1_5myl1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+autostart = true
+
+[node name="DespawnBlood" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DespawnBlood" to="." method="_on_despawn_blood_timeout"]

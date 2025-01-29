@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpgjds75s3wxi"]
+
+[ext_resource type="Texture2D" uid="uid://bjb48js0248x1" path="res://graphics/world/neo_zero_tileset_V2.0_DEMO/neo_zero_props_02_free.png" id="1_sgyls"]
+[ext_resource type="Texture2D" uid="uid://5mpdgo52o8to" path="res://graphics/lights/light.png" id="2_t30px"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q42sg"]
+size = Vector2(8, 9)
+
+[node name="LightPillar" type="StaticBody2D"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sgyls")
+region_enabled = true
+region_rect = Rect2(145.853, 18.4764, 13.2373, 26.9845)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(0.1, 0.1)
+color = Color(0.858897, 0, 0.160254, 1)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("2_t30px")
+texture_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_q42sg")
