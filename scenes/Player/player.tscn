@@ -1,17 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://bit2ioismhmdq"]
+[gd_scene load_steps=18 format=3 uid="uid://bit2ioismhmdq"]
 
 [ext_resource type="Texture2D" uid="uid://dtlq4oyxso8rj" path="res://graphics/player/Prototype_Character(1).png" id="1_2nr0g"]
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_2qjhr"]
+[ext_resource type="Resource" uid="uid://b2qwep4g0igk7" path="res://scenes/inventory/PlayerInventory.tres" id="2_xpcjt"]
 [ext_resource type="Script" path="res://scenes/Player/player_movement.gd" id="3_8j3ep"]
 [ext_resource type="PackedScene" uid="uid://btyhlm2hgwhbb" path="res://scenes/Weapons/Sword/sword.tscn" id="4_ovb0r"]
 [ext_resource type="Script" path="res://scenes/Player/state_machine.gd" id="5_paqjg"]
 [ext_resource type="Script" path="res://scenes/Player/idle_state.gd" id="6_jmxui"]
 [ext_resource type="Script" path="res://scenes/Player/run_state.gd" id="7_ptxom"]
 [ext_resource type="Script" path="res://scenes/Player/dash_state.gd" id="8_52f5o"]
+[ext_resource type="PackedScene" uid="uid://bufhrhyctx586" path="res://scenes/UI/ui.tscn" id="10_spc0q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phok1"]
 radius = 4.0
-height = 12.0
+height = 8.0
 
 [sub_resource type="Animation" id="Animation_4fg3k"]
 length = 0.001
@@ -118,6 +120,7 @@ polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_2qjhr")
+inventory = ExtResource("2_xpcjt")
 
 [node name="PlayerMovement" type="Node2D" parent="."]
 script = ExtResource("3_8j3ep")
@@ -130,7 +133,7 @@ vframes = 12
 frame = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_phok1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -156,3 +159,5 @@ script = ExtResource("8_52f5o")
 occluder = SubResource("OccluderPolygon2D_8p7m4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("10_spc0q")]

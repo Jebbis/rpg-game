@@ -1,8 +1,10 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://bnppado6gjv6t"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://bnppado6gjv6t"]
 
 [ext_resource type="Texture2D" uid="uid://bjbkjol4thsqe" path="res://graphics/world/neo_zero_tileset_V2.0_DEMO/neo_zero_tileset_02.png" id="1_ed74k"]
 [ext_resource type="Texture2D" uid="uid://l0m3sd50klgw" path="res://graphics/world/neo_zero_tileset_V2.0_DEMO/neo_zero_buildings_02.png" id="2_4va75"]
 [ext_resource type="Texture2D" uid="uid://bjb48js0248x1" path="res://graphics/world/neo_zero_tileset_V2.0_DEMO/neo_zero_props_02_free.png" id="3_kb3oe"]
+[ext_resource type="PackedScene" uid="uid://dbmntkb2uria0" path="res://scenes/inventory/items/collectables/lifepot.tscn" id="4_1srid"]
+[ext_resource type="PackedScene" uid="uid://beo2pyr4vhmru" path="res://scenes/inventory/items/collectables/sword.tscn" id="5_16jwy"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ffb2r"]
 polygon = PackedVector2Array(-8, -8, -3.875, -8, -3.875, 8, -8, 8)
@@ -399,6 +401,11 @@ texture = ExtResource("3_kb3oe")
 10:5/0 = 0
 11:5/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ejm2q"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("4_1srid")
+scenes/2/scene = ExtResource("5_16jwy")
+
 [resource]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
@@ -406,3 +413,4 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_7lmf6")
 sources/1 = SubResource("TileSetAtlasSource_optyw")
 sources/2 = SubResource("TileSetAtlasSource_3004s")
+sources/3 = SubResource("TileSetScenesCollectionSource_ejm2q")

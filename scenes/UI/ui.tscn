@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bufhrhyctx586"]
+
+[ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="1_hvgnq"]
+[ext_resource type="PackedScene" uid="uid://dkd2jf23ehwot" path="res://scenes/inventory/inventory_gui.tscn" id="2_qpahy"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_hvgnq")
+
+[node name="InventoryGui" parent="." instance=ExtResource("2_qpahy")]
+anchors_preset = -1
+anchor_left = 0.985
+anchor_top = 0.975
+offset_left = -140.0
+offset_top = -88.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0

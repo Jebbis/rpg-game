@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var character_speed := 75.0
+@export var inventory: Inventory
 
 @onready var movement := $PlayerMovement
 @onready var animation_player := $AnimationPlayer
 @onready var weapon = $Weapon
 
 var can_move := true
-
 
 func _process(_delta):
 	

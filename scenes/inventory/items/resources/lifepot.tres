@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cbfi6fn8ycj2q"]
+
+[ext_resource type="Script" path="res://scenes/inventory/inventory_item.gd" id="1_knjpc"]
+[ext_resource type="Texture2D" uid="uid://cqntlxabpaunb" path="res://graphics/items/potions/Lifepot.png" id="2_app63"]
+
+[resource]
+script = ExtResource("1_knjpc")
+name = "Lifepot"
+texture = ExtResource("2_app63")
+maxAmountPerStack = 5
